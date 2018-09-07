@@ -62,7 +62,7 @@ $chart_line_specs = array (
 $font_file = 'ecfonts/Sloan.otf';
 
 // Prepare basic calculations
-$page_dpi = 300;
+$page_dpi = 600;
 $page_width_px = $page_dpi * $page_width_in;
 $page_height_px = $page_dpi * $page_height_in;
 $interline_spacing_px = $page_dpi * $interline_spacing_in;
