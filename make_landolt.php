@@ -4,15 +4,37 @@
 ** "Landolt C" tactile acuity chart. At the baseline level (0 log), 
 ** there is a 2.28mm gap in the letter "C". 
 **
+** References:
+** 
+** Legge, G. et al. (2008) Retention of high tactile acuity throughout
+**   the lifespan in blindness. Perception & Psychophysics, 
+**   70(8): 1471-1488.
+**   https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3611958/
+** 
+** Bruns, P. et al. (2014) Tactile acuity charts: A reliable measure
+**   of spatial acuity. PLOS ONE 9(2): e87384.
+**   https://doi.org/10.1371/journal.pone.0087384
+**
+** Copyright (C) 2018 Anthony Tibbs
 */
 
 // All measurements in inches
 $page_width_in = 8.25;
 $page_height_in = 10.75;
-$interline_spacing_in = 0.6; // inches
+$interline_spacing_in = 0.6;
 $top_margin_in = 0.15;
 $left_margin_in = 0.15;
 
+// Manual measurement of the resulting production is required to confirm
+// that printer variances and tactile chart generating processes have
+// not altered the size of the result. This factor allows for fine-
+// tuning the results on a chart-wide basis if differences are observed.
+//
+// Line-by-line adjustments are not currently accounted for here.
+//
+$fontsize_fudge_factor = 1;
+
+//
 // Through some trial and error and measurement with Gimp/Photoshop to
 // confirm sizes, we determined that a baseline font size of 102 would
 // result in a 2.28mm gap in the Landolt C character. The rest of the
@@ -60,6 +82,7 @@ $current_y = $top_margin_px;
 foreach ($chart_line_specs as $clLabel => $clSpecs) {
     $current_x = $left_margin_px;
     $current_line_height = 0;
+    $fontsize = $clSpecs['fontsize'] * $fontsize_fudge_factor;
     
     for ($i = 0; $i < strlen($clSpecs['sequence']); $i++) {
         // By default the Landolt 'C' character appears with the
@@ -84,20 +107,12 @@ foreach ($chart_line_specs as $clLabel => $clSpecs) {
         }
 
         // Determine bounding box
-        $box = calculateTextBox($clSpecs['fontsize'], $angle, $font_file, 'C');
+        $box = calculateTextBox($fontsize, $angle, $font_file, 'C');
         $pos_x = $current_x + $box['left'];
         $pos_y = $current_y + $box['top'];
         $current_line_height = max($current_line_height, $box['height']);
-        imagettftext(
-            $img,
-            $clSpecs['fontsize'],
-            $angle,
-            $pos_x,
-            $pos_y,
-            $colorBlack,
-            $font_file,
-            'C'
-        );
+        imagettftext($img, $fontsize, $angle, $pos_x, $pos_y, $colorBlack,
+                     $font_file, 'C');
 
         $current_x += $character_cell_spacing;
     }
