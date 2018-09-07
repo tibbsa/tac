@@ -1,0 +1,3 @@
+[submodule "ecfonts"]
+	path = ecfonts
+	url = https://github.com/denispelli/Eye-Chart-Fonts.git
