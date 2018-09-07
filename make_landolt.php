@@ -15,7 +15,7 @@
 **   of spatial acuity. PLOS ONE 9(2): e87384.
 **   https://doi.org/10.1371/journal.pone.0087384
 **
-** Copyright (C) 2018 Anthony Tibbs
+** Copyright (C) 2018 Anthony Tibbs <anthony@tibbs.ca>
 */
 
 // All measurements in inches
