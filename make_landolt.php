@@ -19,11 +19,11 @@
 */
 
 // All measurements in inches
-$page_width_in = 8.25;
-$page_height_in = 10.75;
-$interline_spacing_in = 0.6;
-$top_margin_in = 0.15;
-$left_margin_in = 0.15;
+$page_width_in = 8.5;
+$page_height_in = 11;
+$interline_spacing_in = 0.55;
+$top_margin_in = 0.2;
+$left_margin_in = 0.2;
 
 // Manual measurement of the resulting production is required to confirm
 // that printer variances and tactile chart generating processes have
@@ -62,11 +62,11 @@ $chart_line_specs = array (
 $font_file = 'ecfonts/Sloan.otf';
 
 // Prepare basic calculations
-$page_dpi = 600;
+$page_dpi = 300;
 $page_width_px = $page_dpi * $page_width_in;
 $page_height_px = $page_dpi * $page_height_in;
 $interline_spacing_px = $page_dpi * $interline_spacing_in;
-$character_cell_spacing = $page_width_px / 8;
+$character_cell_spacing = $page_width_px / 8 - 25;
 $left_margin_px = $left_margin_in * $page_dpi;
 $top_margin_px = $top_margin_in * $page_dpi;
 

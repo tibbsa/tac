@@ -23,11 +23,11 @@
 */
 
 // All measurements in inches
-$page_width_in = 8.25;
-$page_height_in = 10.75;
-$interline_spacing_in = 1.0;
-$top_margin_in = 0.15;
-$left_margin_in = 0.15;
+$page_width_in = 8.5;
+$page_height_in = 11;
+$interline_spacing_in = .85;
+$top_margin_in = 0.20;
+$left_margin_in = 0.20;
 
 // Dot diameter specified in mm.  We used 1mm per Bruns et al.
 $dot_diameter_mm = 1;
@@ -71,7 +71,7 @@ $page_dpi = 600;
 $page_width_px = $page_dpi * $page_width_in;
 $page_height_px = $page_dpi * $page_height_in;
 $interline_spacing_px = $page_dpi * $interline_spacing_in;
-$character_cell_spacing = $page_width_px / 8;
+$character_cell_spacing = $page_width_px / 8 - 25;
 $left_margin_px = $left_margin_in * $page_dpi;
 $top_margin_px = $top_margin_in * $page_dpi;
 
