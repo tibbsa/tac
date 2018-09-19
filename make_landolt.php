@@ -4,18 +4,21 @@
 ** "Landolt C" tactile acuity chart. At the baseline level (0 log), 
 ** there is a 2.28mm gap in the letter "C". 
 **
-** References:
-** 
-** Legge, G. et al. (2008) Retention of high tactile acuity throughout
-**   the lifespan in blindness. Perception & Psychophysics, 
-**   70(8): 1471-1488.
-**   https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3611958/
-** 
-** Bruns, P. et al. (2014) Tactile acuity charts: A reliable measure
-**   of spatial acuity. PLOS ONE 9(2): e87384.
-**   https://doi.org/10.1371/journal.pone.0087384
-**
 ** Copyright (C) 2018 Anthony Tibbs <anthony@tibbs.ca>
+**
+** This program is free software: you can redistribute it and/or modify
+** it under the terms of the GNU General Public License as published by
+** the Free Software Foundation, either version 3 of the License, or
+** (at your option) any later version.
+**
+** This program is distributed in the hope that it will be useful,
+** but WITHOUT ANY WARRANTY; without even the implied warranty of
+** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+** GNU General Public License for more details.
+**
+** You should have received a copy of the GNU General Public License
+** along with this program.  If not, see <http://www.gnu.org/licenses/>.
+**
 */
 
 // All measurements in inches
