@@ -91,10 +91,10 @@ foreach ($chart_line_specs as $clLabel => $clSpecs) {
         $angle = 0;
         switch ($clSpecs['sequence'][$i]) {
         case 'u' :
-            $angle = 180; break;
+            $angle = 270; break;
             
         case 'l' :
-            $angle = 270; break;
+            $angle = 180; break;
             
         case 'r':
             $angle = 0; break;
