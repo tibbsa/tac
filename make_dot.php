@@ -61,15 +61,15 @@ $spacing_fudge_factor = 1;
 // Letter sequences are per Legge's charts
 //
 $chart_line_specs = array (
-    '+0.5' => array ('dotsep' => 7.2093, 'sequence' => 'jfhdhdfj'),
-    '+0.4' => array ('dotsep' => 5.7266, 'sequence' => 'hdjfjdhf'),
-    '+0.3' => array ('dotsep' => 4.5489, 'sequence' => 'jdfhdfjh'),
-    '+0.2' => array ('dotsep' => 3.6134, 'sequence' => 'fhdjdfdf'),
-    '+0.1' => array ('dotsep' => 2.8703, 'sequence' => 'dhfjfhjd'),
-    '0'    => array ('dotsep' => 2.2800, 'sequence' => 'fjhddjfh'),
-    '-0.1' => array ('dotsep' => 1.8111, 'sequence' => 'fjdhhjdf'),
-    '-0.2' => array ('dotsep' => 1.4386, 'sequence' => 'hfjddhfh'),
-    '-0.3' => array ('dotsep' => 1.1428, 'sequence' => 'hdjdjfdj'),
+    '+0.5/7.21' => array ('dotsep' => 7.2093, 'sequence' => 'jfhdhdfj'),
+    '+0.4/5.73' => array ('dotsep' => 5.7266, 'sequence' => 'hdjfjdhf'),
+    '+0.3/4.55' => array ('dotsep' => 4.5489, 'sequence' => 'jdfhdfjh'),
+    '+0.2/3.61' => array ('dotsep' => 3.6134, 'sequence' => 'fhdjdfdf'),
+    '+0.1/2.87' => array ('dotsep' => 2.8703, 'sequence' => 'dhfjfhjd'),
+    '0/2.28'    => array ('dotsep' => 2.2800, 'sequence' => 'fjhddjfh'),
+    '-0.1/1.81' => array ('dotsep' => 1.8111, 'sequence' => 'fjdhhjdf'),
+    '-0.2/1.44' => array ('dotsep' => 1.4386, 'sequence' => 'hfjddhfh'),
+    '-0.3/1.14' => array ('dotsep' => 1.1428, 'sequence' => 'hdjdjfdj'),
 );
 
 // ======================================================================

@@ -50,24 +50,24 @@ $fontsize_fudge_factor = 1;
 // studies have been used.
 //
 $chart_line_specs = array (
-    '+0.3' => array ('fontsize' => 203, 'sequence' => 'rlulddru'),
-    '+0.2' => array ('fontsize' => 162, 'sequence' => 'ludrrlud'),
-    '+0.1' => array ('fontsize' => 128, 'sequence' => 'rduuldrl'),
-    '0' => array ('fontsize' => 102, 'sequence' => 'ulrdrlud'),
-    '-0.1' => array ('fontsize' => 81, 'sequence' => 'dludrurl'),
-    '-0.2' => array ('fontsize' => 64, 'sequence' => 'rudlurld'),
-    '-0.3' => array ('fontsize' => 51, 'sequence' => 'rldrlduu'),
-    '-0.4' => array ('fontsize' => 41, 'sequence' => 'lrulddru'),
-    '-0.5' => array ('fontsize' => 32, 'sequence' => 'rlurduld'),
-    '-0.6' => array ('fontsize' => 25, 'sequence' => 'rddulurl'),
-    '-0.7' => array ('fontsize' => 20, 'sequence' => 'ludrrlud')
+    '+0.3/4.55' => array ('fontsize' => 203, 'sequence' => 'rlulddru'),
+    '+0.2/3.61' => array ('fontsize' => 162, 'sequence' => 'ludrrlud'),
+    '+0.1/2.87' => array ('fontsize' => 128, 'sequence' => 'rduuldrl'),
+    '0/2.28' => array ('fontsize' => 102, 'sequence' => 'ulrdrlud'),
+    '-0.1/1.81' => array ('fontsize' => 81, 'sequence' => 'dludrurl'),
+    '-0.2/1.44' => array ('fontsize' => 64, 'sequence' => 'rudlurld'),
+    '-0.3/1.14' => array ('fontsize' => 51, 'sequence' => 'rldrlduu'),
+    '-0.4/0.91' => array ('fontsize' => 41, 'sequence' => 'lrulddru'),
+    '-0.5/0.72' => array ('fontsize' => 32, 'sequence' => 'rlurduld'),
+    '-0.6/0.57' => array ('fontsize' => 25, 'sequence' => 'rddulurl'),
+    '-0.7/0.46' => array ('fontsize' => 20, 'sequence' => 'ludrrlud')
 );
 
 // ======================================================================
 $font_file = 'ecfonts/Sloan.otf';
 
 // Labelling
-$label_font_size = 48;
+$label_font_size = 36;
 $label_font_file = './FreeSerif.ttf';
 
 // Prepare basic calculations
