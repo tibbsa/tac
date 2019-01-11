@@ -25,6 +25,8 @@
 **
 */
 
+require_once('calcTextBox.php');
+
 // All measurements in inches
 $page_width_in = 8.5;
 $page_height_in = 11;
@@ -34,7 +36,10 @@ $left_margin_in = 0.20;
 
 // Dot diameter specified in mm.  We used 1mm per Bruns et al.
 $dot_diameter_mm = 1;
-    
+
+$label_font_size = 72;
+$label_font_file = './FreeSerif.ttf';
+
 // Manual measurement of the resulting production is required to confirm
 // that printer variances and tactile chart generating processes have
 // not altered the size of the result. This factor allows for fine-
@@ -82,7 +87,11 @@ $top_margin_px = $top_margin_in * $page_dpi;
 $img = imagecreatetruecolor($page_width_px, $page_height_px);
 $colorWhite = imagecolorallocate($img, 255, 255, 255);
 $colorBlack = imagecolorallocate($img, 0, 0, 0);
+$colorRed = imagecolorallocate($img, 200, 0, 0);
 imagefill($img, 0, 0, $colorWhite);
+
+// save line heights for later use
+$saved_line_heights = array();
 
 $current_y = $top_margin_px;
 
@@ -98,6 +107,7 @@ foreach ($chart_line_specs as $clLabel => $clSpecs) {
         imagecopy($img, $charImage, $current_x, $current_y, 0, 0, imagesx($charImage), imagesy($charImage));
 
         $current_line_height = max($current_line_height, imagesy($charImage));
+        $saved_line_heights [$clLabel] = $current_line_height;
         $current_x += $character_cell_spacing;
 
         imagedestroy($charImage);
@@ -107,6 +117,22 @@ foreach ($chart_line_specs as $clLabel => $clSpecs) {
 }
 
 imagepng($img, 'dotchart.png', 6, PNG_NO_FILTER);
+
+// add labels
+$current_y = $top_margin_px;
+foreach ($chart_line_specs as $clLabel => $clSpecs) {
+    $box = calculateTextBox($label_font_size, 0, $label_font_file, $clLabel);
+    $pos_x = $left_margin_px + ($character_cell_spacing / 2) + 40 + $box['left'];
+    $pos_y = $current_y + $box['top'];
+
+    imagettftext(
+        $img, $label_font_size, 0, $pos_x, $pos_y, $colorRed,
+        $label_font_file, $clLabel);
+
+    $current_y += $saved_line_heights [$clLabel] + $interline_spacing_px;
+}
+
+imagepng($img, 'dotchart_labelled.png', 6, PNG_NO_FILTER);
 imagedestroy($img);
 
 

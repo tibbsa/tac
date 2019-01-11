@@ -21,6 +21,8 @@
 **
 */
 
+require_once ('calcTextBox.php');
+
 // All measurements in inches
 $page_width_in = 8.5;
 $page_height_in = 11;
@@ -64,6 +66,10 @@ $chart_line_specs = array (
 // ======================================================================
 $font_file = 'ecfonts/Sloan.otf';
 
+// Labelling
+$label_font_size = 48;
+$label_font_file = './FreeSerif.ttf';
+
 // Prepare basic calculations
 $page_dpi = 300;
 $page_width_px = $page_dpi * $page_width_in;
@@ -77,7 +83,11 @@ $top_margin_px = $top_margin_in * $page_dpi;
 $img = imagecreatetruecolor($page_width_px, $page_height_px);
 $colorWhite = imagecolorallocate($img, 255, 255, 255);
 $colorBlack = imagecolorallocate($img, 0, 0, 0);
+$colorRed = imagecolorallocate($img, 200, 0, 0);
 imagefill($img, 0, 0, $colorWhite);
+
+// store height of each line so that we can add labels later
+$saved_line_heights = array();
 
 $current_y = $top_margin_px;
 
@@ -114,61 +124,34 @@ foreach ($chart_line_specs as $clLabel => $clSpecs) {
         $pos_x = $current_x + $box['left'];
         $pos_y = $current_y + $box['top'];
         $current_line_height = max($current_line_height, $box['height']);
+        $saved_line_heights [$clLabel] = $current_line_height;
         imagettftext($img, $fontsize, $angle, $pos_x, $pos_y, $colorBlack,
                      $font_file, 'C');
 
         $current_x += $character_cell_spacing;
     }
-
+    
     $current_y += $current_line_height + $interline_spacing_px;
 }
 
 imagepng($img, 'landolt.png', 6, PNG_NO_FILTER);
+
+// add labels
+$current_y = $top_margin_px;
+foreach ($chart_line_specs as $clLabel => $clSpecs) {
+    $box = calculateTextBox($label_font_size, 0, $label_font_file, $clLabel);
+    $pos_x = $left_margin_px + ($character_cell_spacing / 2) + 40 + $box['left'];
+    $pos_y = $current_y + $box['top'];
+    
+    imagettftext(
+        $img, $label_font_size, 0, $pos_x, $pos_y, $colorRed,
+        $label_font_file, $clLabel);
+    
+    $current_y += $saved_line_heights [$clLabel] + $interline_spacing_px;
+}
+
+imagepng($img, 'landolt_labelled.png', 6, PNG_NO_FILTER);
 imagedestroy($img);
 
 
 
-//
-// Borrowed from http://php.net/manual/en/function.imagettfbbox.php
-//
-function calculateTextBox($font_size, $font_angle, $font_file, $text) {
-    $box   = imagettfbbox($font_size, $font_angle, $font_file, $text);
-    if( !$box )
-        return false;
-    $min_x = min( array($box[0], $box[2], $box[4], $box[6]) );
-    $max_x = max( array($box[0], $box[2], $box[4], $box[6]) );
-    $min_y = min( array($box[1], $box[3], $box[5], $box[7]) );
-    $max_y = max( array($box[1], $box[3], $box[5], $box[7]) );
-    $width  = ( $max_x - $min_x );
-    $height = ( $max_y - $min_y );
-    $left   = abs( $min_x ) + $width;
-    $top    = abs( $min_y ) + $height;
-    // to calculate the exact bounding box i write the text in a large image
-    $img     = @imagecreatetruecolor( $width << 2, $height << 2 );
-    $white   =  imagecolorallocate( $img, 255, 255, 255 );
-    $black   =  imagecolorallocate( $img, 0, 0, 0 );
-    imagefilledrectangle($img, 0, 0, imagesx($img), imagesy($img), $black);
-    // for sure the text is completely in the image!
-    imagettftext( $img, $font_size,
-    $font_angle, $left, $top,
-    $white, $font_file, $text);
-    // start scanning (0=> black => empty)
-    $rleft  = $w4 = $width<<2;
-    $rright = 0;
-    $rbottom   = 0;
-    $rtop = $h4 = $height<<2;
-    for( $x = 0; $x < $w4; $x++ )
-        for( $y = 0; $y < $h4; $y++ )
-            if( imagecolorat( $img, $x, $y ) ){
-                $rleft   = min( $rleft, $x );
-                $rright  = max( $rright, $x );
-                $rtop    = min( $rtop, $y );
-                $rbottom = max( $rbottom, $y );
-            }
-    // destroy img and serve the result
-    imagedestroy( $img );
-    return array( "left"   => $left - $rleft,
-    "top"    => $top  - $rtop,
-    "width"  => $rright - $rleft + 1,
-    "height" => $rbottom - $rtop + 1 );
-}

@@ -11,8 +11,9 @@ Currently included charts are:
 
 ## Usage
 
-Each tool generates a .PNG file in the current/working directory containing
-the printable chart contents.
+Each tool generates two .PNG files in the current/working directory containing
+the printable chart contents. One of the charts (_labelled.png) has text
+labels on each line for identification purposes.
 
 Simply run PHP from the command line to generate the chart.
 
@@ -29,6 +30,8 @@ $ php make_landolt.php
 ## License
 
 This project is licensed under the GPL v3 License.  See [LICENSE.md](LICENSE.md) for details.
+
+The GNU Free Font is included for labelling.
 
 ## References
 
